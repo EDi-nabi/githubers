@@ -1,0 +1,9 @@
+<section *ngIf="repository$ | async as repository" id="repository">
+  <h1>{{ repository.name }}</h1>
+  <div>
+    <p>{{ repository.description }}</p>
+    <p>View on GitHub: <a href="{{ repository.html_url }}">{{ repository.html_url }}</a></p>
+  </div>
+  <h2>Contributors</h2>
+  <app-repo-contributors [contributor]="contributor" [repository]="repository.name"></app-repo-contributors>
+</section>

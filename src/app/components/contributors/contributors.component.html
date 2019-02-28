@@ -1,0 +1,24 @@
+<section id="contributors">
+  <main>
+    <h1>Contributors</h1>
+    <nav class="sort">
+      Sort by:
+      <ul>
+        <li><a [ngClass]="{active: sort === 'contributions'}" routerLink="/contributors/1/contributions">Contributions</a></li>
+        <li><a [ngClass]="{active: sort === 'repositories'}" routerLink="/contributors/1/repositories">Repositories</a></li>
+        <li><a [ngClass]="{active: sort === 'gists'}" routerLink="/contributors/1/gists">Gists</a></li>
+        <li><a [ngClass]="{active: sort === 'followers'}" routerLink="/contributors/1/followers">Followers</a></li>
+      </ul>
+    </nav>
+    <section class="contributors">
+      <app-contributor-box *ngFor="let contributor of (contributors$ | async)" [contributor]="contributor"></app-contributor-box>
+    </section>
+  </main>
+  <nav class="pagination">
+    <ul>
+      <li class="link"><a *ngIf="(prevPage$ | async) > 0" routerLink="/contributors/{{ prevPage$ | async }}/{{ sort$ | async }}">Prev Page</a></li>
+      <li>Page {{(prevPage$ | async) + 1}} / {{ pages$ | async }}</li>
+      <li class="link"><a *ngIf="(nextPage$ | async) > 0"routerLink="/contributors/{{ nextPage$ | async }}/{{ sort$ | async }}">Next Page</a></li>
+    </ul>
+  </nav>
+</section>

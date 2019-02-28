@@ -1,0 +1,19 @@
+<section *ngIf="contributor$ | async as contributor" id="contributor">
+  <h1>{{ contributor.login }} <span *ngIf="contributor.name && contributor.name !== contributor.login">aka {{ contributor.name }}</span></h1>
+  <section>
+    <img [src]="contributor.avatarUrl" alt="{{ contributor.login }}">
+    <div class="info">
+      <p *ngIf="contributor.location"><span>Location:</span> {{ contributor.location }}</p>
+      <p *ngIf="contributor.company"><span>Company:</span> {{ contributor.company }}</p>
+      <p *ngIf="contributor.htmlUrl"><span>Github page:</span> <a href="{{ contributor.htmlUrl }}">{{ contributor.htmlUrl }}</a></p>
+      <p *ngIf="contributor.blog"><span>Blog:</span> <a href="{{ contributor.blog }}">{{ contributor.blog }}</a></p>
+
+      <p *ngIf="contributor.allContributions"><span>Contributions to Angular repos:</span> {{ contributor.allContributions }}</p>
+      <p *ngIf="contributor.publicRepos"><span>Public Repos:</span> {{ contributor.publicRepos }}</p>
+      <p *ngIf="contributor.publicGists"><span>Public Gists:</span> {{ contributor.publicGists }}</p>
+      <p *ngIf="contributor.followers"><span>Followers:</span> {{ contributor.followers }}</p>
+    </div>
+  </section>
+  <h2>Repositories</h2>
+  <app-repos [contributor]="contributor.login"></app-repos>
+</section>
