@@ -21,5 +21,6 @@ export class ReposComponent implements OnInit {
 
   loadPage(url: string) {
     this.repositories$ = this.repositoriesService.getUserRepositories$(this.contributor, url);
+    window.scrollTo(0, 0);
   }
 }

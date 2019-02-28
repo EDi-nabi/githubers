@@ -117,7 +117,6 @@ export function ContributorsReducer(state = initialState, action: ContributorsAc
     default:
       return state;
   }
-
 }
 
 export const getContributors = (state: State) => {
@@ -143,6 +142,7 @@ export const getContributors = (state: State) => {
     .sort(sortMethod)
     .slice((state.page - 1) * state.perPage, state.page * state.perPage);
 };
+
 export const getAllContributors = (state: State) => state.contributors;
 export const getContributor = (state: State) => state.contributors[state.activeContributor];
 export const getContributorsPrevPage = (state: State) => state.page - 1 > 0 ? state.page - 1 : 0;
