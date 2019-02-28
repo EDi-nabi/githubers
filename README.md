@@ -11,7 +11,7 @@ Angular ma 188 repozytoriów. W nich około 2900 kontrybutorów. RESTowe API Git
 
 1. Pobrać profil Angulara. W nim podana jest ilość repozytoriów i adres listy. Pierwszy request.
 2. Pobrać listę repozytoriów. Dwie strony, kolejne dwa requesty.
-3. Z każdego repozytorium pobrać ilość kontrybutorów. 188 requestów. Dane repozytorium nie zawierają informacji o kontrybutorach. Żeby ją wyciągnąć trzeba zapytać o listę kontrybutorów z paginacją ustawioną na 1 kontrybutor na stronę. Wtedy w nagłównu odpowiedzi zwracany jest link do ostatniej strony, a z niego da się wyciągnąć ilość "stron" czyli kontrybutorów.
+3. Z każdego repozytorium pobrać ilość kontrybutorów. 188 requestów. Dane repozytorium nie zawierają informacji o kontrybutorach. Żeby ją wyciągnąć trzeba zapytać o listę kontrybutorów z paginacją ustawioną na 1 kontrybutor na stronę. Wtedy w nagłówku odpowiedzi zwracany jest link do ostatniej strony, a z niego da się wyciągnąć ilość "stron" czyli kontrybutorów.
 4. Mając ilość kontrybutorów można obliczyć na ile stron podzielona będzie lista kontrybutorów w każdym repozytorium. Niektóre repozytoria mieszczą się na jednej stronie, inne mają ich pięć. Leci przynajmniej 400 kolejnych zapytań.
 5. Pobrać wszystkich kontrybutorów z każdego repozytorium. Kontrybutorów jest co prawda ok. 2900, ale zapytań leci dużo więcej, bo wielu z nich udziela się przy wielu repozytoriach. A trzeba pobrać dane o ilości kontrybucji każdego kontrybutora żeby móc ich potem posortować po sumie tych kontrybucji. Tak że do serwera leci przynajmniej 3000 - 3500 zapytań, a nie zdziwiłbym się, gdyby było ich jeszcze więcej.
 6. Z każdego kontrybutora trzeba pobrać pełny profil użytkownika, bo w nim znajdują się z kolei informacje o gistach, followersach i innych repozytoriach, po których też w zadaniu należy sortować. Tutaj można już skromnie udeżyć do serwera tylko 2900 razy.
@@ -30,7 +30,7 @@ Pozdrawiam.
 ED
 
 P.S.
-Na stronie repozytorium nie dawałem już możliwości klikania z kontrybutorów. Cała ta zabawa z pobieraniem do sortowania sprawiła, że architektura tej apki jest bez sensu i musiałbym ją trochę przemodelować żeby się wszystko zazębiło. Może jeszcze jutro do tego przysiądę, gdybyście nie sprawdzali przed weekendem. W każdym razie w biefie nic nie było, że ma się w nich dać klikać. Znaleźć ich tam można jak najbardziej. ;)
+Na stronie repozytorium nie dawałem już możliwości klikania z kontrybutorów. Cała ta zabawa z pobieraniem do sortowania sprawiła, że architektura tej apki jest bez sensu i musiałbym ją trochę przemodelować żeby się wszystko zazębiło. Może jeszcze jutro do tego przysiądę, gdybyście nie sprawdzali przed weekendem. W każdym razie w briefie nic nie było, że ma się w nich dać klikać. Znaleźć ich tam można jak najbardziej. ;)
 
 P.S.2
 Ciekawe czy komukolwiek będzie się chciało to czytać.
