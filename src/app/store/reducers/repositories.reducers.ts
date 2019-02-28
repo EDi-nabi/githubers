@@ -1,8 +1,8 @@
 import * as RepositoriesActions from '../actions/repositories.actions';
 import { RepositoryEntities } from '../../interfaces/repository-entities.interface';
 import { Entities } from '../../tools/entities';
-import tmpRepos from '../../config/tmpRepos.json';
 import { githubConfig } from '../../config/github.config';
+// import tmpRepos from '../../config/tmpRepos.json';
 
 export interface State {
   repositories: RepositoryEntities | {};
@@ -14,17 +14,8 @@ export interface State {
   urPrevPage: string;
 }
 
-export const initialState: State = {
-  repositories: tmpRepos,
-  userRepositories: {},
-  urPerPage: githubConfig.reposPerPage,
-  urPage: 1,
-  urPages: 0,
-  urNextPage: '',
-  urPrevPage: '',
-};
 // export const initialState: State = {
-//   repositories: {},
+//   repositories: tmpRepos,
 //   userRepositories: {},
 //   urPerPage: githubConfig.reposPerPage,
 //   urPage: 1,
@@ -32,6 +23,16 @@ export const initialState: State = {
 //   urNextPage: '',
 //   urPrevPage: '',
 // };
+
+export const initialState: State = {
+  repositories: {},
+  userRepositories: {},
+  urPerPage: githubConfig.reposPerPage,
+  urPage: 1,
+  urPages: 0,
+  urNextPage: '',
+  urPrevPage: '',
+};
 
 export function RepositoriesReducer(state = initialState, action: RepositoriesActions.RepositoriesActions) {
   switch (action.type) {

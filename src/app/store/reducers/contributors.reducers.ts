@@ -3,7 +3,7 @@ import * as ContributorsActions from '../actions/contributors.actions';
 import { Entities } from '../../tools/entities';
 import { Sorting } from '../../tools/sorting';
 import { githubConfig } from '../../config/github.config';
-import tmpContributors from '../../config/tmpContributors.json';
+// import tmpContributors from '../../config/tmpContributors.json';
 
 export interface State {
   contributors: ContributorEntities | {};
@@ -14,23 +14,23 @@ export interface State {
   activeContributor: string;
 }
 
-export const initialState: State = {
-  contributors: tmpContributors,
-  counter: 116,
-  page: 1,
-  perPage: githubConfig.contributorsPerPage,
-  sort: 'contributions',
-  activeContributor: '',
-};
-
 // export const initialState: State = {
-//   contributors: {},
-//   counter: 0,
+//   contributors: tmpContributors,
+//   counter: 116,
 //   page: 1,
 //   perPage: githubConfig.contributorsPerPage,
 //   sort: 'contributions',
 //   activeContributor: '',
 // };
+
+export const initialState: State = {
+  contributors: {},
+  counter: 0,
+  page: 1,
+  perPage: githubConfig.contributorsPerPage,
+  sort: 'contributions',
+  activeContributor: '',
+};
 
 export function ContributorsReducer(state = initialState, action: ContributorsActions.ContributorsActions) {
   switch (action.type) {

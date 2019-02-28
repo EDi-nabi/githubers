@@ -9,7 +9,7 @@ export interface State {
 
 export const initialState: State = {
   loading: false,
-  loaded: true,
+  loaded: false,
 };
 
 export function UiReducer(state = initialState, action: UiActions.UiActions) {
