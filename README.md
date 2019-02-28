@@ -35,25 +35,6 @@ Na stronie repozytorium nie dawałem już możliwości klikania z kontrybutorów
 P.S.2
 Ciekawe czy komukolwiek będzie się chciało to czytać.
 
+## Konfiguracja
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests...
-Na testy zabrakło czasu.
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests...
-Na te też.
+W katalogu /app/src/config jest plik github.config.ts. W nim ustawia się login i api key do githuba. Jest tam też tablica z repozytoriami, które będą przeskanowane.
