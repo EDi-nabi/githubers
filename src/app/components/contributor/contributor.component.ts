@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { Contributor } from '../../models/contributor.model';
@@ -11,15 +11,16 @@ import { ContributorsService } from '../../services/contributors.service';
   templateUrl: './contributor.component.html',
   styleUrls: ['./contributor.component.less']
 })
-export class ContributorComponent implements OnInit {
+export class ContributorComponent implements OnInit, OnDestroy {
   contributor$: Observable<Contributor>;
+  contributorSubscription: Subscription;
 
   constructor(
     private contributorsService: ContributorsService,
     private router: Router,
   ) {
     this.contributor$ = this.contributorsService.getContributor$();
-    this.contributor$.subscribe((contributor) => {
+    this.contributorSubscription = this.contributor$.subscribe((contributor) => {
       if (!contributor) {
         this.router.navigate(['/']);
       }
@@ -27,6 +28,10 @@ export class ContributorComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.contributorSubscription.unsubscribe();
   }
 
 }
