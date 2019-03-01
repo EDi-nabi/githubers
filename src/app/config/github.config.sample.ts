@@ -14,5 +14,5 @@ export const githubConfig = {
   initPerPage: 100,
   reposPerPage: 30,
   contributorsPerPage: 30,
-  limit: ['angular', 'material2', 'angular-cli'],
+  limit: ['zone.js', 'material.angular.io', 'router-builds', 'angular', 'material2', 'angular-cli', 'angular.js', 'material', 'protraktor'],
 };
