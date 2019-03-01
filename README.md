@@ -3,7 +3,7 @@
 [Wersja online](http://nabi.pl/test/githubers/)
 
 Zadanie testowe. O tyle nieprzyjemne, że w zasadzie niewykonalne. :)
-Zrobiłem co mogłem, ale daleki jestem od zadowolenia. Za to mogę powiedzieć, że rozwiązanie trzyma poziom zadania. ;)
+Zrobiłem co mogłem, ale daleki jestem od zadowolenia.
 
 Zadanie polegało na "zamianie GitHuba w Facebooka". Czyli wyświetlenie sortowanej listy kontrybutorów wszystkich repozytoriów Angulara.
 Niestety Angular zablokował dostęp do swojego API GraphQL'owego, więc musiałem korzystać z RESTowego. A ono zupełnie nie nadaje się do takiej zabawy.
@@ -18,10 +18,10 @@ Angular ma 188 repozytoriów. W nich około 2900 kontrybutorów. RESTowe API Git
 5. Pobrać wszystkich kontrybutorów z każdego repozytorium. Kontrybutorów jest co prawda ok. 2900, ale zapytań leci dużo więcej, bo wielu z nich udziela się przy wielu repozytoriach. A trzeba pobrać dane o ilości kontrybucji każdego kontrybutora żeby móc ich potem posortować po sumie tych kontrybucji. Tak że do serwera leci przynajmniej 3000 - 3500 zapytań, a nie zdziwiłbym się, gdyby było ich jeszcze więcej.
 6. Z każdego kontrybutora trzeba pobrać pełny profil użytkownika, bo w nim znajdują się z kolei informacje o gistach, followersach i innych repozytoriach, po których też w zadaniu należy sortować. Tutaj można już skromnie udeżyć do serwera tylko 2900 razy.
 
-Podsumowując, aby wyświetlić pierwszą stronę takiej apki należy wysłać do serwera z grubsza licząc 6000 zapytań. Na dodatek wszystko to trzeba trzymać w pamięci, bo trzeba to sortować. A przynajmniej trzeba byłoby, gdyby dało się to pobrać. Na szczęście mój poczciwy MacPro z kilogramem pamięci wywala się po kilku minutach do tego stopnia, że nawet kulka już mu się nie kręci, a GitHub blokuje API Key.
+Podsumowując, aby wyświetlić pierwszą stronę takiej apki należy wysłać do serwera z grubsza licząc 6000 zapytań. Na dodatek wszystko to trzeba trzymać w pamięci, bo trzeba to sortować. A przynajmniej trzeba byłoby, gdyby dało się to pobrać. Na szczęście mój poczciwy MacPro wywala się po kilku minutach do tego stopnia, że nawet kulka już mu się nie kręci, a GitHub blokuje API Key i przysyła pod chatę smutnych panów w szarych prochowcach, którzy pytają o co mi chodzi.
 
-I teraz pojawia się pytanie. Czy to ja tak bardzo nie znam się na robocie, że nie wiem jak wysłać 6000 zapytań do serwera żeby wyświetlić jedną stronę? Czy to ktoś po Waszej stronie nie zauważył, że GitHub daje możliwość blokowania API, team Angulara z tej możliwości skorzystał (wszyscy inni, których sprawdzałem też), a przez co zadanie straciło sens?
-Bo ja już się w połowie roboty zastanawiałem, czy nie napisać sobie proxy, które by mi tego githuba pobrało, skeszowało i podawało już posortowanego i podzielonego na strony. No bo chyba nie musimy sobie tłumaczyć, że tak to się powinno robić. ;) Tylko że startuję do Was na frontenda a nie na fullstacka i moglibyście mnie odrzucić za słabo wykonane zadanie. :D
+I teraz pojawia się pytanie. Czy to ja tak bardzo nie znam się na robocie, że nie wiem jak wysłać 6000 zapytań do serwera żeby wyświetlić jedną stronę? Czy to ktoś po Waszej stronie nie zauważył, że GitHub daje możliwość blokowania GraphQL'owego API, team Angulara z tej możliwości skorzystał (wszyscy inni, których sprawdzałem też), a przez to zadanie straciło sens?
+Bo ja już się w połowie roboty zastanawiałem, czy nie napisać sobie proxy, które by mi tego GitHuba pobrało, skeszowało i podawało już posortowanego i podzielonego na strony. No bo chyba nie musimy sobie tłumaczyć, że tak to się powinno robić. ;) Tylko że startuję do Was na frontenda a nie na fullstacka i moglibyście mnie odrzucić za słabo wykonane zadanie. :D
 
 Zmarnowałem kilka dni kombinując jak to ogarnąć, ale w końcu zarzuciłem temat i zostawiłem w effectach potworka, który ciągnie jak leci. Ograniczyłem jedynie w configu ilość repozytoriów, z których pobieram kontrybutorów, żeby móc przynajmniej na szybko obsłużyć wyświetlanie danych. No i właśnie - reszta jest "na szybko". Brakuje kontroli błędów, preloaderów, testów przede wszystkim. Ledwo CSSy na sam koniec dopisałem żeby to jakoś wyglądało, bo byście mnie skreślili z miejsca.
 A tak to jednak mam nadzieję, że choćby w rekompensacie za wyrządzone szkody moralne, przepuścicie mnie do "rozmowy z technicznym". Bo Julię macie świetną, ale z nią o kolorowych literach nie pogadam.
