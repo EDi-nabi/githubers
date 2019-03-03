@@ -1,5 +1,3 @@
-import { RepositoryContributorsEntities } from '../interfaces/repository-contributors-entities.interface';
-
 export interface RepositoryInterface {
   id: number;
   name: string;
@@ -11,5 +9,4 @@ export interface RepositoryInterface {
   homepage: string;
   language: string;
   contributors_url: string;
-  contributors?: RepositoryContributorsEntities;
 }

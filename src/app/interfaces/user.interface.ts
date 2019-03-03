@@ -1,6 +1,5 @@
-import { ContributorContributionsEntities } from './contributor-contributions-entities.interface';
 
-export interface ContributorInterface {
+export interface UserInterface {
   login: string;
   id: number;
   avatar_url: string;
@@ -15,6 +14,4 @@ export interface ContributorInterface {
   repos_url?: string;
   public_gists?: number;
   followers?: number;
-  contributions?: ContributorContributionsEntities;
-  all_contributions: number;
 }

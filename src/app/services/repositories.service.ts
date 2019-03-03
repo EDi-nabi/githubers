@@ -1,17 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Store } from '@ngrx/store';
 import { Observable, from } from 'rxjs';
 import { map, switchMap, share } from 'rxjs/operators';
 
-import * as fromStore from '../store/reducers/';
-import * as fromApp from '../store/reducers/app.reducers';
-import * as fromRepositories from '../store/reducers/repositories.reducers';
-import * as RepositoriesActions from '../store/actions/repositories.actions';
-import { Repository } from '../models/repository.model';
-import { RepositoryEntities } from '../interfaces/repository-entities.interface';
-import { Owner } from '../models/owner.model';
-import { Contributor } from '../models/contributor.model';
 import { githubConfig } from '../config/github.config';
 import { RepositoryInterface } from '../interfaces/repository.interface';
 
@@ -23,39 +14,10 @@ export class RepositoriesService {
     'Content-Type': 'application/json',
     Authorization: 'token ' + githubConfig.token,
   });
-  repositoriesState$: Observable<fromRepositories.State>;
-  repositories$: Observable<Repository[]>;
-  // repository$: Observable<Repository>;
-  repository$: Observable<any>;
 
   constructor(
-    private store: Store<fromApp.AppState>,
     private http: Http,
   ) { }
-
-  // get from state
-  getRepositories$() {
-    return this.repositories$
-      ? this.repositories$
-      : this.repositories$
-      = this.store.select(fromStore.getRepositories);
-  }
-
-  getRepository$(name: string) {
-    return this.repository$
-      ? this.repository$
-      : this.repository$
-      = this.store.select(fromStore.getRepository, { props: { name } });
-  }
-
-  // dispatch actions
-  dispatchLoadRepositories(owner: Owner) {
-    this.store.dispatch(new RepositoriesActions.LoadRepositories({ owner }));
-  }
-
-  dispatchLoadUserRepositories(login: string) {
-    this.store.dispatch(new RepositoriesActions.LoadUserRepositories({ login }));
-  }
 
   // load from github
   getUserRepositories$(user: string, url: string = '') {

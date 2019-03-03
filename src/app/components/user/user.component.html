@@ -1,0 +1,22 @@
+<section *ngIf="user$ | async as user" id="user">
+  <h1>{{ user.login }} <span *ngIf="user.name && user.name !== user.login">aka
+      {{ user.name }}</span></h1>
+  <section>
+    <img [src]="user.avatarUrl" alt="{{ user.login }}">
+    <div class="info">
+      <p *ngIf="user.location"><span>Location:</span> {{ user.location }}</p>
+      <p *ngIf="user.company"><span>Company:</span> {{ user.company }}</p>
+      <p *ngIf="user.htmlUrl"><span>Github page:</span> <a
+          href="{{ user.htmlUrl }}">{{ user.htmlUrl }}</a></p>
+      <p *ngIf="user.blog"><span>Blog:</span> <a href="{{ user.blog }}">{{ user.blog }}</a></p>
+
+      <p *ngIf="user.allContributions"><span>Contributions to Angular repos:</span>
+        {{ user.allContributions }}</p>
+      <p *ngIf="user.publicRepos"><span>Public Repos:</span> {{ user.publicRepos }}</p>
+      <p *ngIf="user.publicGists"><span>Public Gists:</span> {{ user.publicGists }}</p>
+      <p *ngIf="user.followers"><span>Followers:</span> {{ user.followers }}</p>
+    </div>
+  </section>
+  <h2>Repositories</h2>
+  <app-repos [user]="user.login"></app-repos>
+</section>

@@ -1,5 +1,4 @@
 import { RepositoryInterface } from '../interfaces/repository.interface';
-import { RepositoryContributorsEntities } from '../interfaces/repository-contributors-entities.interface';
 
 export class Repository {
   id: number;
