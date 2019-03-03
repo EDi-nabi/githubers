@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Observable, from } from 'rxjs';
-import { map, switchMap, share } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { Observable, from, of } from 'rxjs';
+import { map, switchMap, share, catchError, take } from 'rxjs/operators';
 
 import { githubConfig } from '../config/github.config';
+import { UserInterface } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +18,34 @@ export class UsersService {
 
   constructor(
     private http: Http,
+    private router: Router,
   ) { }
 
-  // load from github
-  getUsers$(url: string = '', user: string = '', repo: string = '', ) {
-    if (!url) {
-      url = `https://api.github.com/repos/${user}/${repo}/contributors?page=1&per_page=${githubConfig.usersPerPage}`;
+
+  getUser$(user: string): Observable<UserInterface> {
+    const url = `${githubConfig.url}/users/${user}`;
+    return this.http.get(url, { headers: this.headers }).pipe(
+      take(1),
+      catchError(error => {
+        this.router.navigate(['/not-found']);
+        return of(error);
+      }),
+      map((response: Response) => response.json()),
+      share()
+    );
+  }
+
+  getUsers$(url: string = '', user: string, repo: string = '', ) {
+    if (!url && repo) { // get contributors
+      url = `${githubConfig.url}/repos/${user}/${repo}/contributors?page=1&per_page=${githubConfig.usersPerPage}`;
+    }
+    if (!url && !repo) { // get followers
+      url = `${githubConfig.url}/users/${user}/followers?page=1&per_page=${githubConfig.usersPerPage}`;
     }
     return this.http.get(url, { headers: this.headers }).pipe(
+      catchError(error => {
+        return of(error);
+      }),
       map((response: Response) => {
         const users = { list: [], page: 1, pages: 1, next: '', prev: '', };
         users.list = response.json();

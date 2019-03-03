@@ -1,22 +1,20 @@
 <section *ngIf="user$ | async as user" id="user">
-  <h1>{{ user.login }} <span *ngIf="user.name && user.name !== user.login">aka
-      {{ user.name }}</span></h1>
+  <h1>{{ user.login }} <span *ngIf="user.name && user.name !== user.login">aka {{ user.name }}</span></h1>
   <section>
-    <img [src]="user.avatarUrl" alt="{{ user.login }}">
+    <img [src]="user.avatar_url" alt="{{ user.login }}">
     <div class="info">
       <p *ngIf="user.location"><span>Location:</span> {{ user.location }}</p>
       <p *ngIf="user.company"><span>Company:</span> {{ user.company }}</p>
-      <p *ngIf="user.htmlUrl"><span>Github page:</span> <a
-          href="{{ user.htmlUrl }}">{{ user.htmlUrl }}</a></p>
+      <p *ngIf="user.html_url"><span>Github page:</span> <a href="{{ user.html_url }}">{{ user.html_url }}</a></p>
       <p *ngIf="user.blog"><span>Blog:</span> <a href="{{ user.blog }}">{{ user.blog }}</a></p>
 
-      <p *ngIf="user.allContributions"><span>Contributions to Angular repos:</span>
-        {{ user.allContributions }}</p>
-      <p *ngIf="user.publicRepos"><span>Public Repos:</span> {{ user.publicRepos }}</p>
-      <p *ngIf="user.publicGists"><span>Public Gists:</span> {{ user.publicGists }}</p>
+      <p *ngIf="user.public_repos"><span>Public Repos:</span> {{ user.public_repos }}</p>
+      <p *ngIf="user.public_gists"><span>Public Gists:</span> {{ user.public_gists }}</p>
       <p *ngIf="user.followers"><span>Followers:</span> {{ user.followers }}</p>
     </div>
   </section>
-  <h2>Repositories</h2>
+  <h2>Followers</h2>
+  <app-users [user]="user.login"></app-users>
+  <h2>Repos</h2>
   <app-repos [user]="user.login"></app-repos>
 </section>

@@ -1,0 +1,12 @@
+<a *ngIf="user$ | async as user" routerLink="/user/{{ user.login }}">
+  <img [src]="user.avatar_url" alt="{{ user.login }}">
+  <div class="user">
+    <h4>{{ user.login }}</h4>
+    <ul>
+      <li *ngIf="user.contributions"><span>Contributions:</span> {{ user.contributions }}</li>
+      <li *ngIf="user.public_repos"><span>Repos:</span> {{ user.public_repos }}</li>
+      <li *ngIf="user.public_gists"><span>Gists:</span> {{ user.public_gists }}</li>
+      <li *ngIf="user.followers"><span>Followers:</span> {{ user.followers }}</li>
+    </ul>
+  </div>
+</a>

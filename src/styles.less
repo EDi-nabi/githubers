@@ -120,106 +120,119 @@ body {
       }
     }
 
-    // contributors
-    section#contributors {
-      width: 100%;
-      height: 100%;
-
-      main {
-        grid-area: main;
-
-        nav.sort {
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
-          padding: 0;
-          margin-bottom: 5em;
-          margin-top: -0.67em;
-          font-family: @sans;
-          font-weight: bold;
-          font-size: 0.7em;
-          text-transform: uppercase;
-          ul {
-            list-style: none;
-            margin: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            li {
-              margin-left: 2em;
-              a {
-                display: block;
-                text-decoration: none;
-                letter-spacing: 2px;
-                background: @gray;
-                color: @graytext;
-                padding: 7px 10px 5px 10px;
-                &:hover {
-                  background: @highlight;
-                  color: @text;
-                }
-                &.active {
-                  background: @alert;
-                  color: @white;
-                  cursor: default;
-                }
-              }
-            }
-          }
+    // search
+    section#search {
+      section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+        input {
+          width: 50%;
+          padding: 10px 20px;
+          margin: 3em 0 1em 0;
         }
-
-        section.contributors {
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          flex-flow: row wrap;
-          a {
-            width: 180px;
-            display: inline-block;
-            background: @white;
-            border-bottom: 4px @white solid;
-            margin-bottom: 3em;
-            text-decoration: none;
-            color: @text;
-            box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.05);
-            img {
+        ul {
+          list-style: none;
+          width: 50%;
+          margin: 0;
+          padding: 0;
+          li {
+            margin: 0;
+            padding: 0;
+            a {
+              display: block;
               width: 100%;
-            }
-            .contributor {
-              padding: 0 10px 10px 10px;
-              h4 {
-                font-family: @serif;
-                font-size: 1.3em;
-                margin-bottom: 15px;
-                overflow: hidden;
-                white-space: nowrap;
-              }
-              ul {
-                list-style: none;
-                margin: 0;
-                padding: 0;
-                li {
-                  width: 100%;
-                  display: flex;
-                  justify-content: space-between;
-                  font-family: @sans;
-                  font-size: 0.8em;
-                  padding: 12px 0 5px 0;
-                  border-bottom: 1px @border dashed;
+              height: 100%;
+              background: @white;
+              margin-bottom: 0.5em;
+              text-decoration: none;
+              color: @text;
+              box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.05);
+              &:hover {
+                .repo {
+                  border-color: @highlight;
                 }
               }
-            }
-            &:hover {
-              border-bottom: 4px @highlight solid;
+              .repo {
+                padding: 0 10px 5px 20px;
+                border-left: 10px @border solid;
+                height: 60px;
+                h4 {
+                  font-family: @serif;
+                  font-size: 1em;
+                  margin: 1em 0 0 0;
+                  padding: 10px 0 0 0;
+                  font-weight: bold;
+                }
+                p {
+                  font-size: 0.8em;
+                  float: left;
+                  margin-right: 2em;
+                  em {
+                    color: @textlight;
+                    padding-right: 1em;
+                  }
+                }
+              }
             }
           }
         }
       }
     }
 
-    // contributor
-    section#contributor {
+    // users
+    section.users {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-flow: row wrap;
+      a {
+        width: 180px;
+        display: inline-block;
+        background: @white;
+        border-bottom: 4px @white solid;
+        margin-bottom: 3em;
+        text-decoration: none;
+        color: @text;
+        box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.05);
+        img {
+          width: 100%;
+        }
+        .user {
+          padding: 0 10px 10px 10px;
+          h4 {
+            font-family: @serif;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+          ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              font-family: @sans;
+              font-size: 0.8em;
+              padding: 12px 0 5px 0;
+              border-bottom: 1px @border dashed;
+            }
+          }
+        }
+        &:hover {
+          border-bottom: 4px @highlight solid;
+        }
+      }
+    }
+
+    // user
+    section#user {
       width: 100%;
 
       >section {
@@ -267,109 +280,105 @@ body {
           }
         }
       }
-
-      section.repositories {
-        display: flex;
-        justify-content: space-between;
-        align-items: inherit;
-        flex-flow: row wrap;
-        >a {
-          width: 100%;
-          @media (min-width: 700px) { width: 48%; }
-          display: inline-block;
-          background: @white;
-          border-bottom: 4px @white solid;
-          margin-bottom: 1.5em;
-          text-decoration: none;
-          color: @text;
-          box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.05);
-          img {
-            width: 100%;
-          }
-          .repository {
-            padding: 0 10px 10px 10px;
-            h4 {
-              font-family: @serif;
-              font-size: 1.3em;
-              margin-bottom: 15px;
-
-            }
-            ul {
-              list-style: none;
-              margin: 0;
-              padding: 0;
-              li {
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                font-family: @sans;
-                font-size: 0.8em;
-                padding: 12px 0 5px 0;
-                border-bottom: 1px @border dashed;
-              }
-            }
-          }
-          &:hover {
-            border-bottom: 4px @highlight solid;
-          }
-        }
-
-      }
     }
 
     // repository
-    section#repository {
-      >div {
-        margin-bottom: 3em;
-      }
-
-      section.repoContributors {
-        width: 100%;
+    section#repo {
+      >section {
         display: flex;
-        justify-content: space-between;
         align-items: flex-start;
-        flex-flow: row wrap;
-        a {
-          width: 180px;
-          display: inline-block;
-          background: @white;
-          border-bottom: 4px @white solid;
-          margin-bottom: 3em;
-          text-decoration: none;
-          color: @text;
-          box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.05);
-          img {
-            width: 100%;
+        margin-bottom: 5em;
+        >img {
+          margin-right: 4em;
+          border-bottom: 4px @border solid;
+          width: 200px;
+          @media (min-width: 700px) {
+            width: 300px;
           }
-          .contributor {
-            padding: 0 10px 10px 10px;
-            h4 {
-              font-family: @serif;
-              font-size: 1.3em;
-              margin-bottom: 15px;
-              overflow: hidden;
-              white-space: nowrap;
+          @media (min-width: 1000px) {
+            width: auto;
+          }
+        }
+        >div.info {
+          width: 100%;
+          p {
+            width: 100%;
+            border-bottom: 1px @border dashed;
+            padding-bottom: 0.6em;
+            margin-bottom: 1em;
+            @media (min-width: 1000px) {
+              display: flex;
+              justify-content: space-between;
             }
-            ul {
-              list-style: none;
-              margin: 0;
-              padding: 0;
-              li {
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                font-family: @sans;
-                font-size: 0.8em;
-                padding: 12px 0 5px 0;
-                border-bottom: 1px @border dashed;
+            span {
+              color: @textlight;
+              display: block;
+              margin-bottom: 0.8em;
+              @media (min-width: 1000px) {
+                display: inline;
+                margin-bottom: 0;
               }
             }
-          }
-          &:hover {
-            border-bottom: 4px @highlight solid;
+            a {
+              text-decoration: none;
+              color: @link;
+            }
+            a:hover {
+              text-decoration: underline;
+            }
           }
         }
       }
+    }
+
+    section.repos {
+      display: flex;
+      justify-content: space-between;
+      align-items: inherit;
+      flex-flow: row wrap;
+      >a {
+        width: 100%;
+        @media (min-width: 700px) { width: 48%; }
+        display: flex;
+
+        background: @white;
+        border-bottom: 4px @white solid;
+        margin-bottom: 1.5em;
+        text-decoration: none;
+        color: @text;
+        box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.05);
+        .repo {
+          float: left;
+          padding: 0 10px 10px 20px;
+          border-left: 20px @border solid;
+          height: inherit;
+          margin-bottom: -4px;
+          h4 {
+            font-family: @serif;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+
+          }
+          ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              font-family: @sans;
+              font-size: 0.8em;
+              padding: 12px 0 5px 0;
+              border-bottom: 1px @border dashed;
+            }
+          }
+        }
+        &:hover {
+          border-bottom: 4px @highlight solid;
+        }
+      }
+
     }
   }
 

@@ -1,0 +1,10 @@
+<section *ngIf="users$ | async as users" class="users">
+  <app-user-box *ngFor="let user of users.list" [user]="user.login"></app-user-box>
+  <nav class="pagination">
+    <ul>
+      <li class="link"><a *ngIf="users.prev" (click)="loadPage(users.prev)">Prev Page</a></li>
+      <li>Page {{ users.page }} / {{ users.pages }}</li>
+      <li class="link"><a *ngIf="users.next" (click)="loadPage(users.next)">Next Page</a></li>
+    </ul>
+  </nav>
+</section>

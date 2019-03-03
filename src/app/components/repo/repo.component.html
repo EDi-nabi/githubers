@@ -1,0 +1,15 @@
+<section *ngIf="repo$ | async as repo" id="repo">
+  <h1>{{ repo.name }}</h1>
+  <section>
+    <img [src]="repo.owner.avatar_url" alt="{{ repo.owner.login }}">
+    <div class="info">
+      <p *ngIf="repo.owner.login"><span>Owner:</span> {{ repo.owner.login }}</p>
+      <p *ngIf="repo.html_url"><span>Github page:</span> <a href="{{ repo.html_url }}">{{ repo.html_url }}</a></p>
+      <p *ngIf="repo.description">{{ repo.description }}</p>
+    </div>
+  </section>
+</section>
+<h2>Contributors</h2>
+<app-users *ngIf="repo$ | async as repo" [user]="repo.owner.login" [repo]="repo.name"></app-users>
+
+

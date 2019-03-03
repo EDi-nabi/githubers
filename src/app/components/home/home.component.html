@@ -1,6 +1,18 @@
 <section id="search">
-  <h1>Search for repo, find people behind it</h1>
-  <p>
-    <input type="text" name="search" placeholder="Repository name"/>
-  </p>
+  <h1>Search for repo <span>find people behind it</span></h1>
+  <section>
+    <input type="text" name="search" placeholder="Repository name" autofocus autocomplete="off" [formControl]="search" />
+    <ul *ngIf="repos$ | async as repos">
+      <li *ngFor="let repo of repos">
+        <a routerLink="/repo/{{ repo.full_name }}">
+          <div class="repo">
+            <h4>{{ repo.name }}</h4>
+            <p *ngIf="repo.owner.login"><em>Owner:</em> {{ repo.owner.login }}</p>
+            <p *ngIf="repo.stargazers_count"><em>Stars:</em> {{ repo.stargazers_count }}</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </section>
 </section>
+

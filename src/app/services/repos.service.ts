@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Observable, from } from 'rxjs';
-import { map, switchMap, share } from 'rxjs/operators';
+import { Observable, from, of } from 'rxjs';
+import { map, switchMap, share, take, catchError } from 'rxjs/operators';
 
 import { githubConfig } from '../config/github.config';
-import { RepositoryInterface } from '../interfaces/repository.interface';
+import { RepoInterface } from '../interfaces/repo.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RepositoriesService {
+export class ReposService {
   headers = new Headers({
     'Content-Type': 'application/json',
     Authorization: 'token ' + githubConfig.token,
@@ -17,14 +18,29 @@ export class RepositoriesService {
 
   constructor(
     private http: Http,
+    private router: Router,
   ) { }
 
-  // load from github
-  getUserRepositories$(user: string, url: string = '') {
+  getRepo$(user: string, repo: string): Observable<RepoInterface> {
+    const url = `${githubConfig.url}/repos/${user}/${repo}`;
+    return this.http.get(url, { headers: this.headers }).pipe(
+      take(1),
+      catchError(error => {
+        return of(error);
+      }),
+      map((response: Response) => response.json()),
+      share()
+    );
+  }
+
+  getRepos$(url: string = '', user: string) {
     if (!url) {
-      url = `https://api.github.com/users/${user}/repos?page=1&per_page=${githubConfig.reposPerPage}`;
+      url = `${githubConfig.url}/users/${user}/repos?page=1&per_page=${githubConfig.reposPerPage}`;
     }
     return this.http.get(url, { headers: this.headers }).pipe(
+      catchError(error => {
+        return of(error);
+      }),
       map((response: Response) => {
         const repos = { list: [], page: 1, pages: 1, next: '', prev: '', };
         repos.list = response.json();
@@ -48,12 +64,13 @@ export class RepositoriesService {
     );
   }
 
-  loadRepository(user: string, name: string): Observable<RepositoryInterface> {
-    const url = `https://api.github.com/repos/${user}/${name}`;
-    console.log(url);
-    return this.http.get(url, { headers: this.headers }).pipe(
-      map((response: Response) => response.json()),
-      share()
+  findRepos(query: string) {
+    const url = `${githubConfig.url}/search/repositories?q=${query}&sort=stars&order=desc`;
+    return this.http.get(url).pipe(
+      take(20),
+      map((response: Response) => {
+        return response.json().items;
+      }),
     );
   }
 
