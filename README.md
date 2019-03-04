@@ -1,7 +1,7 @@
 # Githubers
 
 ### Wersja 2
-[Online](http://nabi.pl/projects/githubers/)
+[Online](http://githubers.nabi.pl/)
 
 Dorzuciłem jeszcze wersję okrojoną z sortowania. Wisi na gałęzi "without-sort".
 Brak sortowania to też brak tysięcy requestów, brak potrzeby korzystania z ngrxa i w ogóle brak wszystkiego. Za to dodałem wyszukiwarkę. I całość nabrała sensu i jakiejś tam, powiedzmy, wartości użytkowej.
