@@ -1,4 +1,4 @@
-<a *ngIf="user$ | async as user" routerLink="/user/{{ user.login }}">
+<a *ngIf="user$ | async as user; else spinner" routerLink="/user/{{ user.login }}">
   <img [src]="user.avatar_url" alt="{{ user.login }}">
   <div class="user">
     <h4>{{ user.login }}</h4>
@@ -10,3 +10,8 @@
     </ul>
   </div>
 </a>
+<ng-template #spinner>
+  <div class="spinnerBox">
+    <app-spinner [show]="true"></app-spinner>
+  </div>
+</ng-template>

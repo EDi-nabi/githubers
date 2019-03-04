@@ -13,6 +13,8 @@ import { UserInterface } from 'src/app/interfaces/user.interface';
 })
 export class UserComponent {
   user$: Observable<UserInterface>;
+  showUsers = true;
+  showRepos = false;
 
   constructor(
     private usersService: UsersService,
@@ -23,6 +25,11 @@ export class UserComponent {
         return this.usersService.getUser$(params.user);
       }),
     );
+  }
+
+  switchTab() {
+    this.showUsers = !this.showUsers;
+    this.showRepos = !this.showRepos;
   }
 
 }

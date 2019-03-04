@@ -1,9 +1,9 @@
 <section *ngIf="repo$ | async as repo" id="repo">
   <h1>{{ repo.name }}</h1>
   <section>
-    <img [src]="repo.owner.avatar_url" alt="{{ repo.owner.login }}">
+    <a routerLink="/user/{{ repo.owner.login }}"><img [src]="repo.owner.avatar_url" alt="{{ repo.owner.login }}"></a>
     <div class="info">
-      <p *ngIf="repo.owner.login"><span>Owner:</span> {{ repo.owner.login }}</p>
+      <p *ngIf="repo.owner.login"><span>Owner:</span> <a routerLink="/user/{{ repo.owner.login }}">{{ repo.owner.login }}</a></p>
       <p *ngIf="repo.html_url"><span>Github page:</span> <a href="{{ repo.html_url }}">{{ repo.html_url }}</a></p>
       <p *ngIf="repo.description">{{ repo.description }}</p>
     </div>

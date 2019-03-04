@@ -13,8 +13,18 @@
       <p *ngIf="user.followers"><span>Followers:</span> {{ user.followers }}</p>
     </div>
   </section>
-  <h2>Followers</h2>
-  <app-users [user]="user.login"></app-users>
-  <h2>Repos</h2>
-  <app-repos [user]="user.login"></app-repos>
+  <div class="tabs">
+    <div class="tab" (click)="switchTab()" [ngClass]="{ active: showUsers }">
+      <h2>Followers</h2>
+    </div>
+    <div class="tab" (click)="switchTab()" [ngClass]="{ active: showRepos }">
+      <h2>Repos</h2>
+    </div>
+  </div>
+  <div class="tabContent" [ngClass]="{ hide: !showUsers }">
+    <app-users [user]="user.login"></app-users>
+  </div>
+  <div class="tabContent" [ngClass]="{ hide: !showRepos }">
+    <app-repos [user]="user.login"></app-repos>
+  </div>
 </section>

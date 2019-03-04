@@ -35,7 +35,7 @@ export class ReposService {
 
   getRepos$(url: string = '', user: string) {
     if (!url) {
-      url = `${githubConfig.url}/users/${user}/repos?page=1&per_page=${githubConfig.reposPerPage}`;
+      url = `${githubConfig.url}/users/${user}/repos?page=1&per_page=${githubConfig.reposPerPage}&sort=stars&order=desc`;
     }
     return this.http.get(url, { headers: this.headers }).pipe(
       catchError(error => {
