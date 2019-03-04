@@ -12,6 +12,7 @@ import { UserBoxComponent } from './components/users/user-box/user-box.component
 import { RepoComponent } from './components/repo/repo.component';
 import { ReposComponent } from './components/repos/repos.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     ReposComponent,
     ErrorPageComponent,
     UserBoxComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

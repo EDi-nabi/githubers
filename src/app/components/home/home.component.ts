@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ReposService } from 'src/app/services/repos.service';
-import { debounceTime, switchMap, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, switchMap, distinctUntilChanged, filter } from 'rxjs/operators';
 import { RepoInterface } from 'src/app/interfaces/repo.interface';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,23 +13,20 @@ import { Observable } from 'rxjs';
 export class HomeComponent implements OnInit {
   repos$: Observable<RepoInterface[]>;
   search: FormControl = new FormControl();
+  spinner = true;
 
   constructor(
     private reposService: ReposService
   ) { }
 
   ngOnInit() {
-    this.search.valueChanges.subscribe(result => console.log(result));
-
     this.repos$ = this.search.valueChanges.pipe(
       debounceTime(200),
+      filter((search: string) => search.trim() !== ''),
       distinctUntilChanged(),
       switchMap((search: string) => {
         return this.reposService.findRepos(search);
       })
     );
-
-    this.repos$.subscribe(res => console.log(res));
   }
-
 }

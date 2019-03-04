@@ -2,7 +2,7 @@
   <h1>Search for repo <span>find people behind it</span></h1>
   <section>
     <input type="text" name="search" placeholder="Repository name" autofocus autocomplete="off" [formControl]="search" />
-    <ul *ngIf="repos$ | async as repos">
+    <ul *ngIf="(repos$ | async) as repos; else spinner">
       <li *ngFor="let repo of repos">
         <a routerLink="/repo/{{ repo.full_name }}">
           <div class="repo">
@@ -13,6 +13,9 @@
         </a>
       </li>
     </ul>
+    <ng-template #spinner>
+      <app-spinner [show]="spinner"></app-spinner>
+    </ng-template>
   </section>
 </section>
 

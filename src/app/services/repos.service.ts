@@ -66,12 +66,15 @@ export class ReposService {
 
   findRepos(query: string) {
     const url = `${githubConfig.url}/search/repositories?q=${query}&sort=stars&order=desc`;
-    return this.http.get(url).pipe(
-      take(20),
-      map((response: Response) => {
-        return response.json().items;
-      }),
-    );
+    if (query) {
+      return this.http.get(url).pipe(
+        map((response: Response) => {
+          return response.json().items;
+        }),
+      );
+    } else {
+      return of([]);
+    }
   }
 
 }
