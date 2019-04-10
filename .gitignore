@@ -45,3 +45,6 @@ Thumbs.db
 
 # sensitive
 /src/app/config/*.config.ts
+
+# docs
+/documentation
