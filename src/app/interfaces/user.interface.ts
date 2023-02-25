@@ -14,4 +14,5 @@ export interface UserInterface {
   repos_url?: string;
   public_gists?: number;
   followers?: number;
+  contributions?: number;
 }

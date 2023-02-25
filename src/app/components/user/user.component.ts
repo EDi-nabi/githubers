@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { UsersService } from '../../services/users.service';
 import { UserInterface } from 'src/app/interfaces/user.interface';
@@ -22,7 +22,7 @@ export class UserComponent {
   ) {
     this.user$ = this.route.params.pipe(
       switchMap((params: Params) => {
-        return this.usersService.getUser$(params.user);
+        return this.usersService.getUser$(params['user']);
       }),
     );
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { UserInterface } from '../../interfaces/user.interface';
+import { UsersListInterface } from './../../interfaces/users-list.interface';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { UsersService } from '../../services/users.service';
 export class UsersComponent implements OnInit, OnChanges {
   @Input() user: string;
   @Input() repo: string;
-  users$: Observable<any>;
+  users$: Observable<UsersListInterface>;
 
   constructor(
     private usersService: UsersService,

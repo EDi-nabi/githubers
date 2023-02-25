@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { ReposService } from '../../services/repos.service';
@@ -22,7 +22,7 @@ export class RepoComponent implements OnInit {
   ngOnInit() {
     this.repo$ = this.route.params.pipe(
       switchMap((params: Params) => {
-        return this.reposService.getRepo$(params.user, params.repo);
+        return this.reposService.getRepo$(params['user'], params['repo']);
       }),
     );
   }
